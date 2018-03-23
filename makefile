@@ -8,10 +8,10 @@ main.o: main.cpp Heroe.h Adulto.h Joven.h Bumeran.h ArcoYFlechas.h Bombas.h Item
 Heroe.o: Heroe.h Heroe.cpp Item.h Monstruos.h
 	g++ -c Heroe.cpp
 
-Adulto.o: Adulto.cpp Adulto.h Heroe.h Item.h
+Adulto.o: Adulto.cpp Adulto.h Heroe.h Item.h Monstruos.h
 	g++ -c Adulto.cpp
 
-Joven.o: Joven.cpp Joven.h Heroe.h
+Joven.o: Joven.cpp Joven.h Heroe.h Monstruos.h
 	g++ -c Joven.cpp
 
 Bumeran.o: Bumeran.cpp Bumeran.h Item.h

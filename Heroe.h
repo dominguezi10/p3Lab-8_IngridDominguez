@@ -11,13 +11,13 @@ class Heroe
 {
 
   private:
-    string nombre;
-    int vida;
-    Item *item;
+    string nombre; 
     int jefes_derrotados;
     int dinero;
 
   public:
+    int vida;
+    Item *item;
     Heroe();
     Heroe(string, int, Item*, int, int);
     string getNombre();
@@ -31,6 +31,8 @@ class Heroe
     int getDinero();
     void setDinero(int);
     virtual Monstruos* Ataque(Monstruos*) = 0;
+    virtual Monstruos* AtaqueItem(Monstruos*) = 0;
+    virtual Monstruos* Defensa(Monstruos*) = 0;
 
     ~Heroe();
 };

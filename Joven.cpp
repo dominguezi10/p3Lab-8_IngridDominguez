@@ -1,4 +1,5 @@
 #include "Joven.h"
+#include "Monstruos.h"
 #include <iostream>
 #include <string>
 
@@ -11,10 +12,37 @@ Joven::Joven()
 {
 }
 
-Monstruos *Joven::Ataque(Monstruos *)
-{
+Monstruos *Joven::Ataque(Monstruos * monstruo){
+    if (monstruo->getTipo() == 1){
+        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
+    }
+    if (monstruo->getTipo() == 2){
+        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
+    }
+    if (monstruo->getTipo() == 3){
+        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
+    }
 }
 
-Joven::~Joven()
-{
+Monstruos *Joven::Defensa(Monstruos* monstruo){
+    if (monstruo->getTipo() == 1){
+        vida = vida - monstruo->getAtaque();
+    }
+    if (monstruo->getTipo() == 2){
+        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
+    }
+    if (monstruo->getTipo() == 3){
+        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
+    }
+}
+
+Monstruos *Joven::AtaqueItem(Monstruos* monstruo) {
+    /*if(dynamcic_cast){
+
+    }*/
+}
+
+Joven::~Joven(){
+
+
 }

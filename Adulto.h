@@ -10,10 +10,12 @@ using namespace std;
 
 class Adulto : public Heroe
 {
-  public:
+  public: 
     Adulto();
     Adulto(string, int, Item*, int, int);
     Monstruos *Ataque(Monstruos *);
+    Monstruos* Defensa(Monstruos*);
+    Monstruos* AtaqueItem(Monstruos*); 
     ~Adulto();
 };
 #endif

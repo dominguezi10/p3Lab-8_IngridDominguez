@@ -33,6 +33,51 @@ int Monstruos::getDebilidad()
     return debilidad;
 }
 
+void Monstruos::setVida(int vida){
+
+    this->vida = vida;
+}
+
+
+int Monstruos::getVida(){
+
+    return vida;
+}
+
+
+void Monstruos::setTipo(int tipo){
+
+    this->tipo = tipo;
+}
+
+
+int Monstruos::getTipo(){
+
+    return tipo;
+}
+
+void Monstruos::setDefensa(int defensa){
+
+    this->defensa = defensa;
+}
+
+
+int Monstruos::getDefensa(){
+
+    return defensa;
+}
+
+void Monstruos::setAtaque(int ataque){
+
+    this->ataque = ataque;
+}
+
+
+int Monstruos::getAtaque(){
+
+    return ataque;
+}
+
 void Monstruos::setDebilidad(int debilidad)
 {
 

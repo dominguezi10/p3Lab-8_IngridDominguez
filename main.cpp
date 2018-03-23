@@ -19,6 +19,7 @@ int menu();
 void crearMonstruo();
 void cambiarItem();
 void listar();
+void jugar();
 
 int main(){
     cout<< "Bienvenido!"<< endl ;
@@ -87,6 +88,10 @@ void crearMonstruo(){
     Monstruos* mosntruo = new Monstruos(nombre, tipo, debilidad);
     mosntruos.push_back(mosntruo);
     cout<< "Existen " << mosntruos.size() << endl;
+}
+
+void jugar(){
+
 }
 
 void listar(){

@@ -24,6 +24,14 @@ public:
   void setNombre(string);
   int getDebilidad();
   void setDebilidad(int);
+  int getVida();
+  void setVida(int);
+  int getTipo();
+  void setTipo(int);
+  int getDefensa();
+  void setDefensa(int);
+  int getAtaque();
+  void setAtaque(int);
   void Vida();
   ~Monstruos();
 };
