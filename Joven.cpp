@@ -13,33 +13,27 @@ Joven::Joven()
 }
 
 Monstruos *Joven::Ataque(Monstruos * monstruo){
-    if (monstruo->getTipo() == 1){
-        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
-    }
-    if (monstruo->getTipo() == 2){
-        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
-    }
-    if (monstruo->getTipo() == 3){
-        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
-    }
+    monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
+    return monstruo;
 }
 
-Monstruos *Joven::Defensa(Monstruos* monstruo){
-    if (monstruo->getTipo() == 1){
-        vida = vida - monstruo->getAtaque();
-    }
-    if (monstruo->getTipo() == 2){
-        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
-    }
-    if (monstruo->getTipo() == 3){
-        monstruo->setVida(monstruo->getVida() - 4 + monstruo->getDefensa());
-    }
+void Joven::Defensa(Monstruos* monstruo){
+    vida = vida - monstruo->getAtaque() +2;
 }
 
 Monstruos *Joven::AtaqueItem(Monstruos* monstruo) {
-    /*if(dynamcic_cast){
+    if (item->getNombre() == "Bumeran"){
+        monstruo->setVida(monstruo->getVida() - 5 + monstruo->getDefensa());
+    }
 
-    }*/
+    if (item->getNombre() == "ArcoYFlecha"){
+        monstruo->setVida(monstruo->getVida() - 4 );
+    }
+
+    if (item->getNombre() == "Bombas"){
+        monstruo->setVida(monstruo->getVida() - 10 + monstruo->getDefensa());
+        vida = vida-4;
+    }
 }
 
 Joven::~Joven(){

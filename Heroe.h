@@ -32,7 +32,7 @@ class Heroe
     void setDinero(int);
     virtual Monstruos* Ataque(Monstruos*) = 0;
     virtual Monstruos* AtaqueItem(Monstruos*) = 0;
-    virtual Monstruos* Defensa(Monstruos*) = 0;
+    virtual void Defensa(Monstruos*) = 0;
 
     ~Heroe();
 };

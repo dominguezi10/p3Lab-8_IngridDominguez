@@ -14,7 +14,7 @@ class Adulto : public Heroe
     Adulto();
     Adulto(string, int, Item*, int, int);
     Monstruos *Ataque(Monstruos *);
-    Monstruos* Defensa(Monstruos*);
+    void Defensa(Monstruos*);
     Monstruos* AtaqueItem(Monstruos*); 
     ~Adulto();
 };

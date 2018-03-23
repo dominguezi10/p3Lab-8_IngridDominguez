@@ -18,7 +18,7 @@ Monstruos *Adulto::Ataque(Monstruos* monstruo){
 
 }
 
-Monstruos *Adulto::Defensa(Monstruos* monstruo){
+void Adulto::Defensa(Monstruos* monstruo){
 
 }
 

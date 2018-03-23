@@ -34,6 +34,7 @@ int main(){
           //  cout << "s   aaa  " <<opcion ;
         switch (opcion){
         case 1:{
+            jugar();
             break;
         }
         case 2:{
@@ -91,7 +92,42 @@ void crearMonstruo(){
 }
 
 void jugar(){
+    while(jugador->getVida()>0){
+        int opcion;
+        
+        cout<< "Jugador Ataque: "<< endl ;
+        cout<< "1- Nomal "<< endl<< "2.- Con Item "<< endl;
+        cout<< "ingresa opcion: "<< endl ;
+        cin>> opcion;
 
+        for(int i=0; i<mosntruos.size(); i++){
+            cout<< (1+i)<< "- "<< mosntruos[i]->getNombre()<< endl;
+        }
+
+     
+        int opcionM = -99;
+        while(opcion< 0|| opcion>mosntruos.size()){
+            cout <<"ingresa la posicion del Mounstro a pelear: "<< endl;
+            cin >> opcionM;
+        }
+
+        Monstruos* mosntruoP;
+        mosntruoP = mosntruos[opcionM-1];
+
+        if(opcion == 1){
+            mosntruoP = jugador->Ataque(mosntruoP);
+        }
+        if(opcion == 2){
+            mosntruoP = jugador->AtaqueItem(mosntruoP);
+        }
+
+        cout <<"Turno del mosntruo: "<< endl;
+        cout <<"Mosntruo atacand..... "<< endl;
+        jugador->Defensa(mosntruoP);
+        
+
+        
+    }
 }
 
 void listar(){
@@ -149,7 +185,7 @@ Heroe* crearJugador(){
     if(tipo == 1){
         item = new Bumeran(5, "Bumeran", "rojo");
     }else  if(tipo ==2){
-        item = new ArcoYFlechas(4, "Arco y Flecha", "azul");
+        item = new ArcoYFlechas(4, "ArcoYFlecha", "azul");
     }else  if(tipo ==3){
         item = new Bombas(10, 4, "Bombas", "verde");
     }
@@ -167,7 +203,7 @@ void cambiarItem(){
     if(tipo == 1){
         item = new Bumeran(5, "Bumeran", "rojo");
     }else  if(tipo ==2){
-        item = new ArcoYFlechas(4, "Arco y Flecha", "azul");
+        item = new ArcoYFlechas(4, "ArcoYFlecha", "azul");
     }else  if(tipo ==3){
         item = new Bombas(10, 4, "Bombas", "verde");
     }

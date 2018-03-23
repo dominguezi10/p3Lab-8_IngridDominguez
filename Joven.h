@@ -13,7 +13,7 @@ class Joven : public Heroe
     Joven();
     Joven(string, int,  Item*, int, int);
     Monstruos *Ataque(Monstruos *);
-    Monstruos *Defensa(Monstruos *);
+    void Defensa(Monstruos *);
     Monstruos* AtaqueItem(Monstruos*);
     ~Joven();
 };
