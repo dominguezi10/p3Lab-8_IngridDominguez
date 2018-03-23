@@ -17,7 +17,8 @@ Heroe* crearJugador();
 vector<Monstruos*> mosntruos;
 int menu();
 void crearMonstruo();
-
+void cambiarItem();
+void listar();
 
 int main(){
     cout<< "Bienvenido!"<< endl ;
@@ -26,7 +27,7 @@ int main(){
     cout<< "Creado Jugador "<< jugador->getNombre() <<endl;
 
     int opcion = 0;
-    while (jugador->getVida() > 0 && opcion != 7){
+    while (jugador->getVida() > 0 && opcion != 8){
         opcion = menu();
 
           //  cout << "s   aaa  " <<opcion ;
@@ -45,6 +46,7 @@ int main(){
             break;
         }
         case 4:{
+            cambiarItem();
             break;
         }
         case 5:{
@@ -54,6 +56,10 @@ int main(){
             break;
         }
         case 7:{
+            listar();
+            break;
+        }
+        case 8:{
             jugador->setVida(0);
             break;
         }
@@ -83,10 +89,28 @@ void crearMonstruo(){
     cout<< "Existen " << mosntruos.size() << endl;
 }
 
+void listar(){
+    int opcion =-100;
+
+    for(int i=0; i<mosntruos.size(); i++){
+        cout<< (1+i)<< "- "<< mosntruos[i]->getNombre()<< endl;
+    }
+
+    while(opcion< 0|| opcion>mosntruos.size()){
+        cout <<"ingresa la posicion del Mounstro a eliminar: "<< endl;
+        cin >> opcion;
+    }
+
+    delete mosntruos[opcion-1];
+    mosntruos[opcion-1] = NULL;
+    mosntruos[opcion-1] = new Monstruos("Fue Eliminado", 1, 1);
+    cout <<"el Mounstro Fue Eliminado "<< endl << endl;
+}
+
 
 int menu(){
     int opcion = -100;
-    while(opcion<1 || opcion >7){
+    while(opcion<1 || opcion >8){
         cout << "Ingresa tu opcion: "<< endl;
         cout << "1- Pelear con Monstruo" << endl;
         cout << "2- Ver Estado" << endl;
@@ -94,9 +118,10 @@ int menu(){
         cout << "4- Cambiar Item" << endl;
         cout << "5- Tienda" << endl;
         cout << "6- Guardar Partida" << endl;
-        cout << "7- Salir" << endl;
+        cout << "7- Eliminar Monstruos" << endl;
+        cout << "8- Salir" << endl;
         cin >> opcion;
-        if (mosntruos.size() < 1 && (opcion == 1 || opcion == 5 || opcion == 6))
+        if (mosntruos.size() < 1 && (opcion == 1 || opcion == 5 || opcion == 6 || opcion == 7))
         {
             cout << "Debe crear Monstruos Primero!. " << endl;
             opcion = 0;
@@ -126,4 +151,22 @@ Heroe* crearJugador(){
 
     Heroe* jugador = new Joven(nombre, 12, item, 0,0);
     return jugador;
+}
+
+void cambiarItem(){
+    int tipo;
+    cout<< "Tipo  de Item Nuevo: "<< endl << "1.-Bomeran "<< endl<< "2.-Arco y Flecha"<< endl << "3.-Bomba"<< endl;
+    cin>> tipo;
+
+    Item* item;
+    if(tipo == 1){
+        item = new Bumeran(5, "Bumeran", "rojo");
+    }else  if(tipo ==2){
+        item = new ArcoYFlechas(4, "Arco y Flecha", "azul");
+    }else  if(tipo ==3){
+        item = new Bombas(10, 4, "Bombas", "verde");
+    }
+
+    jugador->setItem(item);
+    cout<< "Item Nuevo asignado"<< endl<< endl;
 }
