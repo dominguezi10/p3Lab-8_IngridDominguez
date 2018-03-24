@@ -66,7 +66,7 @@ int main(){
             break;
         }
         case 8:{
-            jugador->setVida(0);
+            //jugador->setVida(0);
             break;
         }
         }
@@ -172,7 +172,20 @@ void tienda(){
     cout<< "2.-Master Sword "<< endl;
     cin>> opcion;
 
-    if(opcion ==2 && jugador->getCondicion()==1 && jugador->getDinero()>=200 ){
+    if(opcion ==1){
+        if( jugador->getDinero()>=200 ){
+            jugador->setVida(jugador->getVida()+4);
+            jugador->setDinero(jugador->getDinero()-200);
+            cout<<"Comprastes un  Corazon vida"<< endl;
+            cout<< "Tienes 4 vidas mas"<<endl<<endl;
+        }else{
+            cout<< "No tienes dinero suficiente";
+        }
+        
+    
+    }
+
+    if(opcion ==2 && jugador->getCondicion()==1 && jugador->getJefes_derrotados()>=4){
         string nombre;
         int dinero, vida, jefes; 
         Item* item;
@@ -206,6 +219,8 @@ void tienda(){
         cout<<"Ahora eres un Joven !! "<< endl<<endl;
     }
 
+    
+
 }
 
 void listar(){
@@ -215,7 +230,7 @@ void listar(){
         cout<< (1+i)<< "- "<< mosntruos[i]->getNombre()<< endl;
     }
 
-    while(opcion< 0|| opcion>mosntruos.size()){
+    while(opcion< 1|| opcion>mosntruos.size()){
         cout <<"ingresa la posicion del Mounstro a eliminar: "<< endl;
         cin >> opcion;
     }
@@ -227,10 +242,22 @@ void listar(){
 }
 
 void guardarPartida(){
-    ofstream hereo("hereo.dat", ios::binary);
-    jugador->write(hereo);
-	hereo.close();
-    cout<< "escrito!" <<endl<<endl;
+    int opcion ;
+    cout<< "1.- Guardar"<<endl;
+    cout<< "2.-Cargar"<< endl;
+    cin >> opcion;
+    if(opcion ==1){
+        ofstream hereo("hereo.dat", ios::binary);
+        jugador->write(hereo);
+	    hereo.close();
+        cout<< "escrito!" <<endl<<endl;
+    }else if(opcion== 2){
+        ifstream hereo("hereo.dat", ios::binary);
+        jugador->read(hereo);
+	    hereo.close();
+        cout<< "cargado!" <<endl<<endl;
+    }
+    
 }
 
 int menu(){
@@ -242,7 +269,7 @@ int menu(){
         cout << "3- Crear Monstruo" << endl;
         cout << "4- Cambiar Item" << endl;
         cout << "5- Tienda" << endl;
-        cout << "6- Guardar Partida" << endl;
+        cout << "6- Guardar/Cargar Partida" << endl;
         cout << "7- Eliminar Monstruos" << endl;
         cout << "8- Salir" << endl;
         cin >> opcion;

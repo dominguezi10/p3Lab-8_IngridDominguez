@@ -9,6 +9,7 @@
 #include <iostream>
 
 using namespace std;
+int itemN =1;
 
 Heroe::Heroe(string nombre, int vida, Item* item, int jefes_derrotados, int dinero, int condicion)
 {
@@ -27,19 +28,19 @@ void Heroe::write(ofstream &out){
     out.write(reinterpret_cast<char *>(&size), sizeof(int));
     out.write(nombre.data(), size);
     //vida
-    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    out.write(reinterpret_cast<char *>(&vida), sizeof(int));
     
     ///jefes_derrotados
-    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    out.write(reinterpret_cast<char *>(&jefes_derrotados), sizeof(int));
 
     // dinero
-    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    out.write(reinterpret_cast<char *>(&dinero), sizeof(int));
 
     //condicion
-    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    out.write(reinterpret_cast<char *>(&condicion), sizeof(int));
     
     //item
-    int itemN;
+    itemN;
     if(item->getNombre() == "Bumeran"){
         itemN = 1;
     }else if(item->getNombre() == "ArcoYFlecha"){
@@ -50,6 +51,39 @@ void Heroe::write(ofstream &out){
     out.write(reinterpret_cast<char *>(&itemN), sizeof(int));
 }
 
+
+void Heroe:: read(ifstream& in){
+    int size;
+
+    //buffer de nombre
+    in.read(reinterpret_cast<char*>(&size), sizeof(int));
+    char nameBuffer[size];
+    in.read(nameBuffer, size);
+    nombre = nameBuffer;
+
+    //buffer de vida
+    in.read(reinterpret_cast<char*>(&vida), sizeof(int));
+    //buffer de jefe
+    in.read(reinterpret_cast<char*>(&jefes_derrotados), sizeof(int));
+
+    //dinero
+    in.read(reinterpret_cast<char*>(&dinero), sizeof(int));
+
+    //condicion
+    in.read(reinterpret_cast<char*>(&condicion), sizeof(int));
+    
+    //item
+    in.read(reinterpret_cast<char*>(&itemN), sizeof(int));
+    Item* itemTraido;
+    if(itemN == 1){
+        itemTraido = new Bumeran(5, "Bumeran", "rojo");
+    }else  if(itemN ==2){
+        itemTraido = new ArcoYFlechas(4, "ArcoYFlecha", "azul");
+    }else  if(itemN ==3){
+        itemTraido = new Bombas(10, 4, "Bombas", "verde");
+    }
+    setItem(itemTraido);
+}
 
 ////
 
