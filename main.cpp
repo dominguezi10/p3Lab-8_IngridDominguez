@@ -20,12 +20,13 @@ void crearMonstruo();
 void cambiarItem();
 void listar();
 void jugar();
+void tienda();
 
 int main(){
     cout<< "Bienvenido!"<< endl ;
     
     jugador = crearJugador();
-    cout<< "Creado Jugador "<< jugador->getNombre() <<endl;
+    cout<< "Creado Jugador "<< jugador->getNombre() <<endl<< endl;
 
     int opcion = 0;
     while (jugador->getVida() > 0 && opcion != 8){
@@ -52,6 +53,7 @@ int main(){
             break;
         }
         case 5:{
+            tienda();
             break;
         }
         case 6:{
@@ -92,7 +94,7 @@ void crearMonstruo(){
 
     Monstruos* mosntruo = new Monstruos(nombre, tipo, debilidad);
     mosntruos.push_back(mosntruo);
-    cout<< "Existen " << mosntruos.size() << endl;
+    cout<< "Existen " << mosntruos.size() << endl<< endl;
 }
 
 void jugar(){
@@ -124,8 +126,26 @@ void jugar(){
         if(opcion == 2){
             mosntruoP = jugador->AtaqueItem(mosntruoP);
         }
+
+        if(mosntruoP->getVida() <=0){
+            cout<< "Ganastes la batalla" << endl;
+            if(mosntruoP->getTipo()== 1  ||  mosntruoP->getTipo()== 2){
+                if(mosntruoP->getTipo()== 1){
+                    jugador->setJefes_derrotados(jugador->getJefes_derrotados()+1);
+                    if(jugador->getJefes_derrotados()==3 ){
+                        jugador->setVida(jugador->getVida()+4);
+                        jugador->setJefes_derrotados(0);
+                    }
+                }
+                mosntruoP->setVida(20);
+            }
+            if(mosntruoP->getTipo()== 3){
+                mosntruoP->setVida(15);
+            }
+            break;
+        }
         cout<< "***************************" <<endl ;
-        cout <<"Turno del Jugador: "<< endl;
+        cout <<"-> Turno del Jugador: "<< endl<< endl;
         cout<< "Vidas:  "<< jugador->getVida()  <<endl ;
         cout<< "Dinero:  "<< jugador->getDinero()  <<endl ;
         cout<< "Jefes Derrotados:  "<< jugador->getJefes_derrotados()  <<endl;
@@ -140,6 +160,50 @@ void jugar(){
 
         
     }
+}
+
+void tienda(){
+    int opcion;
+    cout<< "---- Tienda ----"<< endl;
+    cout<< "Ingresa tu opcion: "<< endl;
+    cout<< "1.- Comprar Corazon vida"<< endl;
+    cout<< "2.-Master Sword "<< endl;
+    cin>> opcion;
+
+    if(opcion ==2 && jugador->getCondicion()==1 && jugador->getDinero()>=200 ){
+        string nombre;
+        int dinero, vida, jefes; 
+        Item* item;
+
+        nombre = jugador->getNombre();
+        dinero = jugador->getDinero();
+        vida= jugador->getVida();
+        jefes = jugador->getJefes_derrotados();
+        item = jugador->getItem();
+
+        delete jugador;
+        jugador = NULL;
+        jugador = new Adulto(nombre, vida, item, jefes, dinero, 2);
+        cout<<"Master Sword, en pedestal"<< endl;
+        cout<<"Ahora eres un adulto !! "<< endl<<endl;
+    }else if(opcion==2 && jugador->getCondicion()==2 ){
+        string nombre;
+        int dinero, vida, jefes; 
+        Item* item;
+
+        nombre = jugador->getNombre();
+        dinero = jugador->getDinero();
+        vida= jugador->getVida();
+        jefes = jugador->getJefes_derrotados();
+        item = jugador->getItem();
+
+        delete jugador;
+        jugador = NULL;
+        jugador = new Joven(nombre, vida, item, jefes, dinero, 1);
+        cout<<"Master Sword, en pedestal"<< endl;
+        cout<<"Ahora eres un Joven !! "<< endl<<endl;
+    }
+
 }
 
 void listar(){
@@ -174,7 +238,7 @@ int menu(){
         cout << "7- Eliminar Monstruos" << endl;
         cout << "8- Salir" << endl;
         cin >> opcion;
-        if (mosntruos.size() < 1 && (opcion == 1 || opcion == 5 || opcion == 6 || opcion == 7))
+        if (mosntruos.size() < 1 && (opcion == 1 /*|| opcion == 5*/ || opcion == 6 || opcion == 7))
         {
             cout << "Debe crear Monstruos Primero!. " << endl;
             opcion = 0;
@@ -202,7 +266,7 @@ Heroe* crearJugador(){
         item = new Bombas(10, 4, "Bombas", "verde");
     }
 
-    Heroe* jugador = new Joven(nombre, 12, item, 0,0);
+    Heroe* jugador = new Joven(nombre, 12, item, 0,200,1);
     return jugador;
 }
 

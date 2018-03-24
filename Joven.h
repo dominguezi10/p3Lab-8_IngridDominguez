@@ -11,7 +11,7 @@ class Joven : public Heroe
 {
   public:
     Joven();
-    Joven(string, int,  Item*, int, int);
+    Joven(string, int,  Item*, int, int, int);
     Monstruos *Ataque(Monstruos *);
     void Defensa(Monstruos *);
     Monstruos* AtaqueItem(Monstruos*);

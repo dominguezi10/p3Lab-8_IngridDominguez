@@ -14,12 +14,13 @@ class Heroe
     string nombre; 
     int jefes_derrotados;
     int dinero;
+    int condicion;
 
   public:
     int vida;
     Item *item;
     Heroe();
-    Heroe(string, int, Item*, int, int);
+    Heroe(string, int, Item*, int, int, int);
     string getNombre();
     void setNombre(string);
     int getVida();
@@ -29,6 +30,8 @@ class Heroe
     int getJefes_derrotados();
     void setJefes_derrotados(int);
     int getDinero();
+    void setCondicion(int);
+    int getCondicion();
     void setDinero(int);
     virtual Monstruos* Ataque(Monstruos*) = 0;
     virtual Monstruos* AtaqueItem(Monstruos*) = 0;

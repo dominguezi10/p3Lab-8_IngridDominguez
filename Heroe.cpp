@@ -7,13 +7,14 @@
 
 using namespace std;
 
-Heroe::Heroe(string nombre, int vida, Item* item, int jefes_derrotados, int dinero)
+Heroe::Heroe(string nombre, int vida, Item* item, int jefes_derrotados, int dinero, int condicion)
 {
     this->nombre = nombre;
     this->vida = vida;
     this->item = item;
     this->jefes_derrotados = jefes_derrotados;
     this->dinero = dinero;
+    this->condicion = condicion;
 }
 
 Heroe::Heroe()
@@ -40,6 +41,17 @@ void Heroe::setVida(int vida)
 {
 
     this->vida = vida;
+}
+
+int Heroe::getCondicion()
+{
+    return condicion;
+}
+
+void Heroe::setCondicion(int condicion)
+{
+
+    this->condicion = condicion;
 }
 
 Item*  Heroe::getItem()

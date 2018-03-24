@@ -12,7 +12,7 @@ class Adulto : public Heroe
 {
   public: 
     Adulto();
-    Adulto(string, int, Item*, int, int);
+    Adulto(string, int, Item*, int, int,int);
     Monstruos *Ataque(Monstruos *);
     void Defensa(Monstruos*);
     Monstruos* AtaqueItem(Monstruos*); 
