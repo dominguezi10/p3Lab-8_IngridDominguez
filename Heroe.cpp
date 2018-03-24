@@ -4,6 +4,9 @@
 #include "Monstruos.h"
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -16,6 +19,42 @@ Heroe::Heroe(string nombre, int vida, Item* item, int jefes_derrotados, int dine
     this->dinero = dinero;
     this->condicion = condicion;
 }
+
+////
+void Heroe::write(ofstream &out){
+    int size = nombre.size();
+    //nombre
+    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    out.write(nombre.data(), size);
+    //vida
+    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    
+    ///jefes_derrotados
+    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+
+    // dinero
+    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+
+    //condicion
+    out.write(reinterpret_cast<char *>(&size), sizeof(int));
+    
+    //item
+    int itemN;
+    if(item->getNombre() == "Bumeran"){
+        itemN = 1;
+    }else if(item->getNombre() == "ArcoYFlecha"){
+        itemN = 2;
+    }else if(item->getNombre() == "Bombas"){
+        itemN = 3;
+    }
+    out.write(reinterpret_cast<char *>(&itemN), sizeof(int));
+}
+
+
+////
+
+
+
 
 Heroe::Heroe()
 {

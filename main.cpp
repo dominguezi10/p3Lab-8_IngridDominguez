@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <fstream>
 
 #include  "Heroe.h"
 #include  "Adulto.h"
@@ -21,6 +21,7 @@ void cambiarItem();
 void listar();
 void jugar();
 void tienda();
+void guardarPartida();
 
 int main(){
     cout<< "Bienvenido!"<< endl ;
@@ -57,6 +58,7 @@ int main(){
             break;
         }
         case 6:{
+            guardarPartida();
             break;
         }
         case 7:{
@@ -224,6 +226,12 @@ void listar(){
     cout <<"el Mounstro Fue Eliminado "<< endl << endl;
 }
 
+void guardarPartida(){
+    ofstream hereo("hereo.dat", ios::binary);
+    jugador->write(hereo);
+	hereo.close();
+    cout<< "escrito!" <<endl<<endl;
+}
 
 int menu(){
     int opcion = -100;

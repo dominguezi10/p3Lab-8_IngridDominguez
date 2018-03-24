@@ -33,6 +33,8 @@ class Heroe
     void setCondicion(int);
     int getCondicion();
     void setDinero(int);
+    void write(ofstream &);
+  //	void read(ifstream &);  
     virtual Monstruos* Ataque(Monstruos*) = 0;
     virtual Monstruos* AtaqueItem(Monstruos*) = 0;
     virtual void Defensa(Monstruos*) = 0;
