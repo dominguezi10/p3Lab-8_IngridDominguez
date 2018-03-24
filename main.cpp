@@ -68,7 +68,11 @@ int main(){
         }
     }
 
+    if(jugador->getVida() <= 0) {
+        cout<< "Oh, perdistes" << endl;
+    }
 
+    
 
     return 0;
 }
@@ -92,6 +96,20 @@ void crearMonstruo(){
 }
 
 void jugar(){
+
+    int opcionM = -99;
+    for(int i=0; i<mosntruos.size(); i++){
+        cout<< (1+i)<< "- "<< mosntruos[i]->getNombre()<< endl;
+    }
+
+    while(opcionM< 0|| opcionM>mosntruos.size()){
+        cout <<"ingresa la posicion del Mounstro a pelear: "<< endl;
+        cin >> opcionM;
+    }
+
+    Monstruos* mosntruoP;
+    mosntruoP = mosntruos[opcionM-1];
+
     while(jugador->getVida()>0){
         int opcion;
         
@@ -100,31 +118,25 @@ void jugar(){
         cout<< "ingresa opcion: "<< endl ;
         cin>> opcion;
 
-        for(int i=0; i<mosntruos.size(); i++){
-            cout<< (1+i)<< "- "<< mosntruos[i]->getNombre()<< endl;
-        }
-
-     
-        int opcionM = -99;
-        while(opcion< 0|| opcion>mosntruos.size()){
-            cout <<"ingresa la posicion del Mounstro a pelear: "<< endl;
-            cin >> opcionM;
-        }
-
-        Monstruos* mosntruoP;
-        mosntruoP = mosntruos[opcionM-1];
-
         if(opcion == 1){
-            mosntruoP = jugador->Ataque(mosntruoP);
+        mosntruoP = jugador->Ataque(mosntruoP);
         }
         if(opcion == 2){
             mosntruoP = jugador->AtaqueItem(mosntruoP);
         }
+        cout<< "***************************" <<endl ;
+        cout <<"Turno del Jugador: "<< endl;
+        cout<< "Vidas:  "<< jugador->getVida()  <<endl ;
+        cout<< "Dinero:  "<< jugador->getDinero()  <<endl ;
+        cout<< "Jefes Derrotados:  "<< jugador->getJefes_derrotados()  <<endl;
+        cout<< "***************************" <<endl <<endl;
 
         cout <<"Turno del mosntruo: "<< endl;
         cout <<"Mosntruo atacand..... "<< endl;
+
         jugador->Defensa(mosntruoP);
         
+
 
         
     }
